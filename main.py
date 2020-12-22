@@ -19,7 +19,8 @@ api = FastAPI()
 '''conexion desde front to back end'''
 origins = [
     "http://localhost.tiangolo.com", "https://localhost.tiangolo.com",
-    "http://localhost", "http://localhost:8080", "http://localhost:8000"
+    "http://localhost", "http://localhost:8080", "http://localhost:8000",
+    
 ]
 api.add_middleware(
     CORSMiddleware, allow_origins=origins,
@@ -39,7 +40,7 @@ async def auten_usu(usuario_in: UserIn):
         return {"Autenticado":True}
 
 
-@api.get("/producto/{item_id}")
+@api.post("/producto/{item_id}")
 async def item_get(item_id:int):
     item_in = get_item(item_id)
     if item_in == None:
